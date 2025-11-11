@@ -1,0 +1,24 @@
+.container() {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.row(@gap) {
+  display: flex;
+  gap: @gap;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.stack(@gap) {
+  display: grid;
+  gap: @gap;
+}
+
+.card() {
+  background: @color-surface;
+  border-radius: @radius-sm;
+  box-shadow: @shadow-sm;
+  padding: @space-4;
+}

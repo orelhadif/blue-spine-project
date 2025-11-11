@@ -1,0 +1,20 @@
+<mat-card class="status-percentage" *ngIf="statuses.length > 0">
+  <h2>Status Distribution</h2>
+  <div class="status-percentage__list">
+    <div class="status-percentage__item" *ngFor="let status of statuses">
+      <div class="status-percentage__header">
+        <span class="status-percentage__label">{{ status.label }}</span>
+        <span class="status-percentage__value">{{ status.percentage }}%</span>
+      </div>
+      <div class="status-percentage__bar">
+        <div 
+          class="status-percentage__fill" 
+          [style.width.%]="status.percentage"
+          [style.background-color]="status.color"
+        ></div>
+      </div>
+      <div class="status-percentage__count">{{ status.count }} claims</div>
+    </div>
+  </div>
+</mat-card>
+

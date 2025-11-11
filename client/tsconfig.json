@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "outDir": "./out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "emitDecoratorMetadata": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "bundler",
+    "target": "ES2022",
+    "useDefineForClassFields": false,
+    "module": "ES2022",
+    "lib": [
+      "ES2022",
+      "DOM"
+    ]
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}

@@ -1,0 +1,72 @@
+@import '../../../../../styles/_variables.less';
+
+:host {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.upload-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: @space-2;
+  padding: @space-3 @space-4;
+  width: auto;
+  min-width: 180px;
+  justify-content: center;
+  border-radius: 999px;
+  box-shadow: @shadow-sm;
+  background: linear-gradient(135deg, lighten(@color-primary, 4%), darken(@color-primary, 6%));
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  transition: transform .05s ease, filter .15s ease, background .2s ease;
+}
+
+.upload-button:hover {
+  filter: brightness(1.08);
+}
+
+.upload-button:active {
+  transform: translateY(1px);
+}
+
+.upload-button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+  filter: grayscale(0.3);
+  
+  &:hover {
+    filter: grayscale(0.3);
+  }
+}
+
+.upload-button__icon {
+  display: inline-flex;
+}
+
+.upload-button__label {
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+.upload-button__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, .5);
+  border-top-color: #fff;
+  border-radius: 50%;
+  margin-left: @space-2;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.upload-button input[type=file] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}

@@ -1,0 +1,51 @@
+@import '../../../../../styles/_variables.less';
+
+.summary__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: @space-3;
+}
+
+.summary h2 {
+  margin: 0;
+}
+
+.summary__clear-button {
+  display: inline-flex;
+  align-items: center;
+  gap: @space-2;
+  padding: @space-2 @space-3;
+  background: fade(#ef4444, 15%);
+  color: #ef4444;
+  border: 1px solid fade(#ef4444, 30%);
+  border-radius: @radius-sm;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: fade(#ef4444, 25%);
+    border-color: fade(#ef4444, 50%);
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+  
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.stats{ display:grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap:@space-3; }
+.stat{ background: linear-gradient(180deg, fade(#fff,2%), transparent), @color-surface; border-radius:@radius-sm; padding:@space-2 @space-3; box-shadow:@shadow-sm; text-align:center; border-top: 3px solid transparent; }
+.stat:nth-child(1){ border-top-color: #64748b; }  // total
+.stat:nth-child(2){ border-top-color: #7c5cff; }  // balanced (accent)
+.stat:nth-child(3){ border-top-color: #a855f7; }  // overpaid (accent 2)
+.stat:nth-child(4){ border-top-color: #f59e0b; }  // underpaid
+.stat:nth-child(5){ border-top-color: #475569; }  // na
+.k{ font-size:12px; color:@color-muted; }
+.v{ font-size:22px; font-weight:700; }

@@ -1,0 +1,48 @@
+<div class="reconciliation-filter-controls">
+  <mat-form-field appearance="fill" class="reconciliation-filter-controls__field-selector">
+    <mat-label>Filter field</mat-label>
+    <mat-select [value]="filterField" (valueChange)="onFilterFieldChange($event)">
+      <mat-option value="patient_id">Patient ID</mat-option>
+      <mat-option value="claim_id">Claim ID</mat-option>
+      <mat-option value="status">Status</mat-option>
+      <mat-option value="claim_amount_above">Claim Amount Above</mat-option>
+      <mat-option value="claim_amount_below">Claim Amount Below</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field
+    *ngIf="isTextFilter()"
+    appearance="fill"
+    class="reconciliation-filter-controls__value-input"
+    floatLabel="always">
+    <mat-label>Filter value</mat-label>
+    <input
+      matInput
+      (input)="onTextFilterChange($event.target.value)"
+      [value]="filterValue"
+      placeholder="Type to filter">
+  </mat-form-field>
+  <mat-form-field
+    *ngIf="isNumericFilter()"
+    appearance="fill"
+    class="reconciliation-filter-controls__value-input"
+    floatLabel="always">
+    <mat-label>Amount</mat-label>
+    <input
+      matInput
+      type="text"
+      (input)="onNumericFilterChange($event.target.value)"
+      [value]="filterValue"
+      placeholder="Enter amount">
+  </mat-form-field>
+  <mat-form-field
+    *ngIf="isStatusFilter()"
+    appearance="fill"
+    class="reconciliation-filter-controls__status-selector">
+    <mat-label>Status</mat-label>
+    <mat-select [value]="filterValue.toUpperCase()" (valueChange)="onStatusFilterChange($event)">
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let s of statusOptions" [value]="s">{{ s }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+

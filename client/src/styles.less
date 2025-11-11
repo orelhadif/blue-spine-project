@@ -1,0 +1,39 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import './styles/_variables.less';
+@import './styles/_mixins.less';
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: @font-body;
+  background: radial-gradient(1200px 800px at 20% 10%, fade(@color-primary, 12%), transparent 60%),
+              radial-gradient(1000px 700px at 90% 10%, fade(#a855f7, 10%), transparent 60%),
+              @color-bg;
+  color: @color-text;
+}
+.container { .container(); }
+
+// Basic dark mode using prefers-color-scheme (no full Material theme swap)
+@media (prefers-color-scheme: dark) {
+  // Table improvements
+  .rich-table th { background: @color-surface; }
+  .rich-table tr:nth-child(even) td { background: fade(#ffffff, 3%); }
+  .rich-table td, .rich-table th { border-color: rgba(255,255,255,0.06); }
+}
+
+// Global card look (applies to all Material cards and .card)
+mat-card, .mat-mdc-card, .card {
+  background: @color-surface !important;
+  color: @color-text !important;
+  border-radius: @radius-sm !important;
+  box-shadow: @shadow-sm !important;
+  border: none !important;
+}
+
+// Headings and subtle text
+h1, h2, h3, h4 { color: @color-text; margin: 0 0 @space-3; }
+.muted { color: @color-muted; }
+
+// Tables: hover and borders
+.rich-table tr:hover td { background: fade(#ffffff, 5%); }
+.rich-table th, .rich-table td { border-bottom: 1px solid fade(#fff, 6%); }

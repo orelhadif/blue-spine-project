@@ -1,0 +1,10 @@
+<button class="upload-button" [class.is-loading]="isUploading" [disabled]="isUploading || disabled">
+  <input type="file" accept=".csv" (change)="onFileChange($event)" [disabled]="disabled">
+  <span class="upload-button__icon" aria-hidden="true" *ngIf="!isUploading">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M5 20h14v-2H5v2zm7-18-5 5h3v4h4V7h3l-5-5z"/>
+    </svg>
+  </span>
+  <span class="upload-button__label">{{ isUploading ? 'Uploading…' : label }}</span>
+  <span class="upload-button__spinner" *ngIf="isUploading" aria-hidden="true"></span>
+</button>
