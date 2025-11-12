@@ -11,8 +11,10 @@
 
   <div class="error-message card" *ngIf="error$ | async as error">
     <div class="error-message__content">
-      <span class="error-message__icon" aria-hidden="true">⚠️</span>
-      <span class="error-message__text">{{ error }}</span>
+      <div class="error-message__center">
+        <span class="error-message__icon" aria-hidden="true">⚠️</span>
+        <span class="error-message__text">{{ error }}</span>
+      </div>
       <button class="error-message__dismiss" (click)="onDismissError()" aria-label="Dismiss error">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
           <path

@@ -48,8 +48,16 @@
   &__content {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: @space-3;
     padding: @space-3;
+    position: relative;
+  }
+
+  &__center {
+    display: flex;
+    align-items: center;
+    gap: @space-3;
   }
 
   &__icon {
@@ -58,13 +66,13 @@
   }
 
   &__text {
-    flex: 1;
     color: @color-text;
     line-height: 1.5;
   }
 
   &__dismiss {
-    flex-shrink: 0;
+    position: absolute;
+    right: @space-3;
     background: transparent;
     border: none;
     color: @color-text;

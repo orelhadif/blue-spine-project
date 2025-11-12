@@ -20,22 +20,15 @@ export class ReconciliationFilterComponent {
     'NA',
   ];
 
-  get isNumericFilter(): boolean {
-    return (
-      this.filterField === 'claim_amount_above' ||
-      this.filterField === 'claim_amount_below'
-    );
-  }
 
-  get isStatusFilter(): boolean {
-    return this.filterField === 'status';
-  }
+  isNumericFilter: boolean = false;
+  isStatusFilter: boolean = false;
+  isTextFilter: boolean = false;
 
-  get isTextFilter(): boolean {
-    return (
-      this.filterField === 'patient_id' ||
-      this.filterField === 'claim_id'
-    );
+  refreshFilters(): void {
+    this.isNumericFilter = this.filterField === 'claim_amount_above' || this.filterField === 'claim_amount_below';
+    this.isStatusFilter = this.filterField === 'status';
+    this.isTextFilter = this.filterField === 'patient_id' || this.filterField === 'claim_id';
   }
 
   onFilterFieldChange(field: FilterField): void {
@@ -43,8 +36,8 @@ export class ReconciliationFilterComponent {
     if (this.filterField !== field) {
       this.filterValue = '';
     }
-    
     this.filterField = field;
+    this.refreshFilters();
     this.emitFilterChange();
   }
 
