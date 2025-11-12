@@ -1,17 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ReconciliationStatus } from '../../store/recon.types';
-
-export type FilterField =
-  | 'patient_id'
-  | 'claim_id'
-  | 'status'
-  | 'claim_amount_above'
-  | 'claim_amount_below';
-
-export interface FilterChange {
-  field: FilterField;
-  value: string;
-}
+import { FilterField, FilterChange } from './reconciliation-filter.component.model';
 
 @Component({
   selector: 'app-reconciliation-filter',
@@ -31,18 +20,18 @@ export class ReconciliationFilterComponent {
     'NA',
   ];
 
-  isNumericFilter(): boolean {
+  get isNumericFilter(): boolean {
     return (
       this.filterField === 'claim_amount_above' ||
       this.filterField === 'claim_amount_below'
     );
   }
 
-  isStatusFilter(): boolean {
+  get isStatusFilter(): boolean {
     return this.filterField === 'status';
   }
 
-  isTextFilter(): boolean {
+  get isTextFilter(): boolean {
     return (
       this.filterField === 'patient_id' ||
       this.filterField === 'claim_id'

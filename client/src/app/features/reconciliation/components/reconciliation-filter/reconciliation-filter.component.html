@@ -10,34 +10,39 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field
-    *ngIf="isTextFilter()"
+    *ngIf="isTextFilter"
     appearance="fill"
     class="reconciliation-filter-controls__value-input"
-    floatLabel="always">
+    floatLabel="always"
+  >
     <mat-label>Filter value</mat-label>
     <input
       matInput
       (input)="onTextFilterChange($event.target.value)"
       [value]="filterValue"
-      placeholder="Type to filter">
+      placeholder="Type to filter"
+    />
   </mat-form-field>
   <mat-form-field
-    *ngIf="isNumericFilter()"
+    *ngIf="isNumericFilter"
     appearance="fill"
     class="reconciliation-filter-controls__value-input"
-    floatLabel="always">
+    floatLabel="always"
+  >
     <mat-label>Amount</mat-label>
     <input
       matInput
       type="text"
       (input)="onNumericFilterChange($event.target.value)"
       [value]="filterValue"
-      placeholder="Enter amount">
+      placeholder="Enter amount"
+    />
   </mat-form-field>
   <mat-form-field
-    *ngIf="isStatusFilter()"
+    *ngIf="isStatusFilter"
     appearance="fill"
-    class="reconciliation-filter-controls__status-selector">
+    class="reconciliation-filter-controls__status-selector"
+  >
     <mat-label>Status</mat-label>
     <mat-select [value]="filterValue.toUpperCase()" (valueChange)="onStatusFilterChange($event)">
       <mat-option value="">All</mat-option>
@@ -45,4 +50,3 @@
     </mat-select>
   </mat-form-field>
 </div>
-

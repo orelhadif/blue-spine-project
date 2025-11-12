@@ -10,7 +10,7 @@ import { SummaryComponent } from './components/summary/summary.component';
 import { ResultsTableComponent } from './components/results-table/results-table.component';
 import { ReconciliationFilterComponent } from './components/reconciliation-filter/reconciliation-filter.component';
 import { StatusPercentageComponent } from './components/status-percentage/status-percentage.component';
-import {ReconciliationPageComponent} from "./containers/reconciliation-page/reconciliation-page.component";
+import { ReconciliationPageComponent } from './containers/reconciliation-page/reconciliation-page.component';
 
 @NgModule({
   declarations: [
@@ -19,20 +19,14 @@ import {ReconciliationPageComponent} from "./containers/reconciliation-page/reco
     ResultsTableComponent,
     ReconciliationFilterComponent,
     StatusPercentageComponent,
-    ReconciliationPageComponent
-
+    ReconciliationPageComponent,
   ],
-  exports: [
-    SummaryComponent,
-    ResultsTableComponent,
-    UploadComponent
-  ],
+  exports: [SummaryComponent, ResultsTableComponent, UploadComponent],
   imports: [
     SharedModule,
     ReconciliationRoutingModule,
     StoreModule.forFeature(reconFeatureKey, reconReducer),
     EffectsModule.forFeature([ReconEffects]),
-
-  ]
+  ],
 })
 export class ReconciliationModule {}

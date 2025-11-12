@@ -14,7 +14,14 @@ describe('ReconciliationFilterComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ReconciliationFilterComponent],
-      imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, NoopAnimationsModule],
+      imports: [
+        CommonModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        NoopAnimationsModule,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ReconciliationFilterComponent);
@@ -26,22 +33,22 @@ describe('ReconciliationFilterComponent', () => {
 
   it('should identify numeric filters', () => {
     component.filterField = 'claim_amount_above';
-    expect(component.isNumericFilter()).toBe(true);
+    expect(component.isNumericFilter).toBe(true);
     component.filterField = 'patient_id';
-    expect(component.isNumericFilter()).toBe(false);
+    expect(component.isNumericFilter).toBe(false);
   });
 
   it('should identify status filter', () => {
     component.filterField = 'status';
-    expect(component.isStatusFilter()).toBe(true);
+    expect(component.isStatusFilter).toBe(true);
     component.filterField = 'patient_id';
-    expect(component.isStatusFilter()).toBe(false);
+    expect(component.isStatusFilter).toBe(false);
   });
 
   it('should identify text filters', () => {
-    expect(component.isTextFilter()).toBe(true); // defaults to patient_id
+    expect(component.isTextFilter).toBe(true); // defaults to patient_id
     component.filterField = 'status';
-    expect(component.isTextFilter()).toBe(false);
+    expect(component.isTextFilter).toBe(false);
   });
 
   it('should clear value when switching fields', () => {
@@ -66,7 +73,10 @@ describe('ReconciliationFilterComponent', () => {
     spyOn(component.filterChange, 'emit');
     component.onTextFilterChange('  P1  ');
     expect(component.filterValue).toBe('p1');
-    expect(component.filterChange.emit).toHaveBeenCalledWith({ field: component.filterField, value: 'p1' });
+    expect(component.filterChange.emit).toHaveBeenCalledWith({
+      field: component.filterField,
+      value: 'p1',
+    });
   });
 
   it('should sanitize numeric filter', () => {

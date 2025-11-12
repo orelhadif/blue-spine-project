@@ -9,8 +9,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 const MODULES = [
-  MatButtonModule, MatCardModule, MatTableModule,
-  MatFormFieldModule, MatInputModule, MatSelectModule, MatIconModule, MatPaginatorModule
+  MatButtonModule,
+  MatCardModule,
+  MatTableModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  MatIconModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({ exports: MODULES })

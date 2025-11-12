@@ -6,7 +6,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ResultsTableComponent } from './results-table.component';
 import { ReconciliationRow } from '../../store/recon.types';
-import { FilterChange } from '../reconciliation-filter/reconciliation-filter.component';
+import { FilterChange } from '../reconciliation-filter/reconciliation-filter.component.model';
 
 describe('ResultsTableComponent', () => {
   let component: ResultsTableComponent;

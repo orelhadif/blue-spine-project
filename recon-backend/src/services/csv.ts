@@ -12,7 +12,7 @@ export function transformClaims(rawRecords: Record<string, any>[]): Claim[] {
       claim_id: String(r.claim_id),
       patient_id: String(r.patient_id),
       date_of_service: String(r.date_of_service),
-      amount: Number(r.amount)
+      amount: Number(r.amount),
     }));
 }
 /**
@@ -25,7 +25,7 @@ export function transformInvoices(rawRecords: Record<string, any>[]): Invoice[] 
     .map((r) => ({
       invoice_id: String(r.invoice_id),
       claim_id: String(r.claim_id),
-      transaction_value: Number(r.transaction_value)
+      transaction_value: Number(r.transaction_value),
     }));
 }
 /**
@@ -36,7 +36,7 @@ export function parseClaims(csvText: string): Claim[] {
   const records = parse(csvText, {
     columns: true,
     skip_empty_lines: true,
-    trim: true
+    trim: true,
   }) as Record<string, any>[];
 
   const required = ['claim_id', 'patient_id', 'date_of_service', 'amount'];
@@ -50,14 +50,12 @@ export function parseClaims(csvText: string): Claim[] {
 }
 
 /**
- * Parses a CSV string and returns Invoice objects.
- * Useful for testing or when you have CSV as a string.
- */
+ * Parses a CSV string and returns Invoice objects. */
 export function parseInvoices(csvText: string): Invoice[] {
   const records = parse(csvText, {
     columns: true,
     skip_empty_lines: true,
-    trim: true
+    trim: true,
   }) as Record<string, any>[];
 
   const required = ['invoice_id', 'claim_id', 'transaction_value'];

@@ -3,4 +3,3 @@ export const CLEAR_DATA = `
     clearData { success message }
   }
 `;
-

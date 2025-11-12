@@ -33,9 +33,7 @@ export class ReconEffects {
                   }),
                 ]
           ),
-          catchError(() =>
-            of(ReconActions.uploadClaimsFailure({ error: CORRUPT_FILE_ERROR }))
-          )
+          catchError(() => of(ReconActions.uploadClaimsFailure({ error: CORRUPT_FILE_ERROR })))
         )
       )
     )
@@ -61,9 +59,7 @@ export class ReconEffects {
                   }),
                 ]
           ),
-          catchError(() =>
-            of(ReconActions.uploadInvoicesFailure({ error: CORRUPT_FILE_ERROR }))
-          )
+          catchError(() => of(ReconActions.uploadInvoicesFailure({ error: CORRUPT_FILE_ERROR })))
         )
       )
     )
@@ -74,8 +70,8 @@ export class ReconEffects {
       ofType(ReconActions.loadSummary),
       mergeMap(() =>
         this.api.getSummary().pipe(
-          map(summary => ReconActions.loadSummarySuccess({ summary })),
-          catchError(error => of(ReconActions.loadSummaryFailure({ error })))
+          map((summary) => ReconActions.loadSummarySuccess({ summary })),
+          catchError((error) => of(ReconActions.loadSummaryFailure({ error })))
         )
       )
     )
@@ -86,8 +82,8 @@ export class ReconEffects {
       ofType(ReconActions.loadReconcile),
       mergeMap(() =>
         this.api.getReconcile().pipe(
-          map(rows => ReconActions.loadReconcileSuccess({ rows })),
-          catchError(error => of(ReconActions.loadReconcileFailure({ error })))
+          map((rows) => ReconActions.loadReconcileSuccess({ rows })),
+          catchError((error) => of(ReconActions.loadReconcileFailure({ error })))
         )
       )
     )
@@ -101,9 +97,7 @@ export class ReconEffects {
           map(() => ReconActions.clearDataSuccess()),
           catchError((error) => {
             const errorMessage =
-              error?.error?.errors?.[0]?.message ||
-              error?.message ||
-              'Failed to clear data';
+              error?.error?.errors?.[0]?.message || error?.message || 'Failed to clear data';
             return of(ReconActions.clearDataFailure({ error: errorMessage }));
           })
         )

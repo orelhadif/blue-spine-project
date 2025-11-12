@@ -56,7 +56,9 @@ describe('CSV Service', () => {
     it('should parse valid CSV', () => {
       const csv = 'claim_id,patient_id,date_of_service,amount\n1,P1,2024-01-01,100';
       const result = parseClaims(csv);
-      expect(result).toEqual([{ claim_id: '1', patient_id: 'P1', date_of_service: '2024-01-01', amount: 100 }]);
+      expect(result).toEqual([
+        { claim_id: '1', patient_id: 'P1', date_of_service: '2024-01-01', amount: 100 },
+      ]);
     });
 
     it('should throw on missing column', () => {
@@ -82,4 +84,3 @@ describe('CSV Service', () => {
     });
   });
 });
-

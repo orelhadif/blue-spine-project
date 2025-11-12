@@ -1,8 +1,18 @@
-import { Component, Input, OnChanges, SimpleChanges, ViewChild, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+  AfterViewInit,
+  ElementRef,
+  OnDestroy,
+} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { Subscription } from 'rxjs';
 import { ReconciliationRow } from '../../store/recon.types';
-import { FilterChange } from '../reconciliation-filter/reconciliation-filter.component';
+import { FilterChange } from '../reconciliation-filter/reconciliation-filter.component.model';
 
 @Component({
   selector: 'app-results-table',
@@ -10,9 +20,11 @@ import { FilterChange } from '../reconciliation-filter/reconciliation-filter.com
   standalone: false,
   styleUrls: ['./results-table.component.less'],
 })
-export class ResultsTableComponent implements OnChanges, AfterViewInit {
+export class ResultsTableComponent implements OnChanges, AfterViewInit, OnDestroy {
   @Input() rows: ReconciliationRow[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef<HTMLDivElement>;
+  private paginatorSubscription?: Subscription;
 
   displayedColumns: string[] = [
     'claim_id',
@@ -25,6 +37,19 @@ export class ResultsTableComponent implements OnChanges, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.paginatorSubscription = this.paginator.page.subscribe(() => {
+      this.scrollToTop();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.paginatorSubscription?.unsubscribe();
+  }
+
+  private scrollToTop(): void {
+    if (this.scrollContainer?.nativeElement) {
+      this.scrollContainer.nativeElement.scrollTop = 0;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -77,5 +102,8 @@ export class ResultsTableComponent implements OnChanges, AfterViewInit {
       field: filterChange.field,
       term: filterChange.value,
     });
+    if (this.paginator) {
+      this.paginator.firstPage();
+    }
   }
 }

@@ -1,19 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Summary } from '../../store/recon.types';
-
-interface StatusData {
-  label: string;
-  count: number;
-  percentage: number;
-  color: string;
-}
-
-const STATUS_COLORS = {
-  balanced: '#7c5cff',
-  overpaid: '#a855f7',
-  underpaid: '#f59e0b',
-  na: '#475569',
-} as const;
+import { StatusData, STATUS_COLORS } from './status-percentage.component.model';
 
 @Component({
   selector: 'app-status-percentage',

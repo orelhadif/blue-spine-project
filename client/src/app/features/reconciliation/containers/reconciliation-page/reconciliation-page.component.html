@@ -1,20 +1,23 @@
 <section class="page">
   <div class="actions-bar card actions-grid">
     <app-upload label="Upload Claims CSV" (uploadedCsv)="onClaimsCsv($event)"></app-upload>
-    <app-upload 
-      label="Upload Invoices CSV" 
+    <app-upload
+      label="Upload Invoices CSV"
       [disabled]="!(hasClaims$ | async)"
-      (uploadedCsv)="onInvoicesCsv($event)">
+      (uploadedCsv)="onInvoicesCsv($event)"
+    >
     </app-upload>
   </div>
 
-  <div class="error-message card" *ngIf="(error$ | async) as error">
+  <div class="error-message card" *ngIf="error$ | async as error">
     <div class="error-message__content">
       <span class="error-message__icon" aria-hidden="true">⚠️</span>
       <span class="error-message__text">{{ error }}</span>
       <button class="error-message__dismiss" (click)="onDismissError()" aria-label="Dismiss error">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
         </svg>
       </button>
     </div>
@@ -22,8 +25,17 @@
 
   <div class="grid">
     <div class="grid-left">
-      <app-summary class="card" *ngIf="(hasData$ | async)" [summary]="(summary$ | async)" (clear)="onClearData()"></app-summary>
-      <app-status-percentage class="card" *ngIf="(hasData$ | async)" [summary]="(summary$ | async)"></app-status-percentage>
+      <app-summary
+        class="card"
+        *ngIf="hasData$ | async"
+        [summary]="summary$ | async"
+        (clear)="onClearData()"
+      ></app-summary>
+      <app-status-percentage
+        class="card"
+        *ngIf="hasData$ | async"
+        [summary]="summary$ | async"
+      ></app-status-percentage>
     </div>
     <app-results-table class="card" [rows]="(rows$ | async) ?? []"></app-results-table>
   </div>

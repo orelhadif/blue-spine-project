@@ -2,13 +2,31 @@
 @import '../styles/_variables.less';
 
 .app-header {
-  position: sticky; top: 0; z-index: 10; background: @color-surface; box-shadow: @shadow-sm;
-  display: flex; align-items: center; justify-content: space-between; padding: @space-3 @space-4;
-  .brand { font-weight: 700; letter-spacing: .2px; }
-  .nav a { margin-left: @space-4; text-decoration: none; color: @color-text; opacity: .8; }
-  .nav .active { opacity: 1; font-weight: 600; }
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: @color-surface;
+  box-shadow: @shadow-sm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: @space-3 @space-4;
+  .brand {
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+  .nav a {
+    margin-left: @space-4;
+    text-decoration: none;
+    color: @color-text;
+    opacity: 0.8;
+  }
+  .nav .active {
+    opacity: 1;
+    font-weight: 600;
+  }
 }
-.app-main { 
+.app-main {
   min-height: calc(100dvh - 120px);
   display: flex;
   align-items: center;
@@ -16,8 +34,12 @@
   width: 100%;
   padding: @space-4 0;
 }
-.app-footer { text-align: center; padding: @space-4; color: @color-muted; }
-.container { 
+.app-footer {
+  text-align: center;
+  padding: @space-4;
+  color: @color-muted;
+}
+.container {
   .container();
   width: 100%;
   max-width: 1120px;

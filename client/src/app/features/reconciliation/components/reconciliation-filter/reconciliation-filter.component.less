@@ -50,7 +50,8 @@
     font-size: inherit !important;
   }
   .mat-mdc-text-field-wrapper.mdc-text-field--focused .mat-mdc-form-field-label,
-  .mat-mdc-text-field-wrapper.mdc-text-field--focused .mat-mdc-form-field-label.mdc-floating-label--float-above,
+  .mat-mdc-text-field-wrapper.mdc-text-field--focused
+    .mat-mdc-form-field-label.mdc-floating-label--float-above,
   .mat-mdc-text-field-wrapper.mdc-text-field--focused .mdc-floating-label,
   .mat-mdc-text-field-wrapper.mdc-text-field--focused .mdc-floating-label__text {
     color: @color-primary !important;
@@ -97,15 +98,18 @@
     color: @color-primary !important;
     opacity: 0.9;
   }
-  .mat-mdc-text-field-wrapper.mdc-text-field--focused input.mat-mdc-input-element::-webkit-input-placeholder {
+  .mat-mdc-text-field-wrapper.mdc-text-field--focused
+    input.mat-mdc-input-element::-webkit-input-placeholder {
     color: @color-primary !important;
     opacity: 0.9;
   }
-  .mat-mdc-text-field-wrapper.mdc-text-field--focused input.mat-mdc-input-element::-moz-placeholder {
+  .mat-mdc-text-field-wrapper.mdc-text-field--focused
+    input.mat-mdc-input-element::-moz-placeholder {
     color: @color-primary !important;
     opacity: 0.9;
   }
-  .mat-mdc-text-field-wrapper.mdc-text-field--focused input.mat-mdc-input-element:-ms-input-placeholder {
+  .mat-mdc-text-field-wrapper.mdc-text-field--focused
+    input.mat-mdc-input-element:-ms-input-placeholder {
     color: @color-primary !important;
     opacity: 0.9;
   }
@@ -113,7 +117,6 @@
     color: @color-muted;
   }
 }
-
 
 // Dark theme for select dropdown panel
 ::ng-deep .mat-mdc-select-panel {
@@ -136,4 +139,3 @@
     }
   }
 }
-

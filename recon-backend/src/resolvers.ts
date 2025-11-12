@@ -5,7 +5,9 @@ import { reconcileAll } from './services/reconciliation';
 import GraphQLUpload from 'graphql-upload/GraphQLUpload.mjs';
 import { parse } from 'csv-parse';
 
-async function readCsvStream<T extends Record<string, any> = Record<string, any>>(stream: NodeJS.ReadableStream): Promise<T[]> {
+async function readCsvStream<T extends Record<string, any> = Record<string, any>>(
+  stream: NodeJS.ReadableStream
+): Promise<T[]> {
   return new Promise((resolve, reject) => {
     const rows: T[] = [];
     stream
@@ -23,16 +25,16 @@ export const resolvers = {
       const rows = reconcileAll();
       const out = {
         totalClaims: rows.length,
-        balanced: rows.filter(r => r.status === 'BALANCED').length,
-        overpaid: rows.filter(r => r.status === 'OVERPAID').length,
-        underpaid: rows.filter(r => r.status === 'UNDERPAID').length,
-        na: rows.filter(r => r.status === 'NA').length
+        balanced: rows.filter((r) => r.status === 'BALANCED').length,
+        overpaid: rows.filter((r) => r.status === 'OVERPAID').length,
+        underpaid: rows.filter((r) => r.status === 'UNDERPAID').length,
+        na: rows.filter((r) => r.status === 'NA').length,
       };
       return out;
     },
     reconciliation: () => {
       return reconcileAll();
-    }
+    },
   },
   Mutation: {
     async uploadClaimsFile(_: unknown, { file }: any) {

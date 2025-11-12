@@ -25,8 +25,7 @@ import { ReconciliationModule } from './features/reconciliation/reconciliation.m
     SharedModule,
     ReconciliationModule,
     AppRoutingModule,
-
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

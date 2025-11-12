@@ -9,14 +9,17 @@ cd recon-backend
 npm install
 npm run dev
 ```
+
 Runs on `http://localhost:8000/graphql` (or `PORT` env var).
 
 **Frontend:**
+
 ```bash
 cd client
 npm install
 npm start
 ```
+
 Runs on `http://localhost:4200`.
 
 ## CSV Format
@@ -39,15 +42,15 @@ Generates `claims.csv`, `invoices.csv`, and `patients.csv` in `scripts/data/`.
 ## Testing
 
 **Frontend:**
+
 ```bash
 cd client
 npm test
 ```
 
 **Backend:**
+
 ```bash
 cd recon-backend
 npm test
 ```
-
-

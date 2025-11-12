@@ -9,10 +9,30 @@ describe('Resolvers', () => {
 
   describe('Query.summary', () => {
     it('should return summary with all statuses', () => {
-      store.claims.set('1', { claim_id: '1', patient_id: 'P1', date_of_service: '2024-01-01', amount: 100 });
-      store.claims.set('2', { claim_id: '2', patient_id: 'P2', date_of_service: '2024-01-02', amount: 200 });
-      store.claims.set('3', { claim_id: '3', patient_id: 'P3', date_of_service: '2024-01-03', amount: 300 });
-      store.claims.set('4', { claim_id: '4', patient_id: 'P4', date_of_service: '2024-01-04', amount: 400 });
+      store.claims.set('1', {
+        claim_id: '1',
+        patient_id: 'P1',
+        date_of_service: '2024-01-01',
+        amount: 100,
+      });
+      store.claims.set('2', {
+        claim_id: '2',
+        patient_id: 'P2',
+        date_of_service: '2024-01-02',
+        amount: 200,
+      });
+      store.claims.set('3', {
+        claim_id: '3',
+        patient_id: 'P3',
+        date_of_service: '2024-01-03',
+        amount: 300,
+      });
+      store.claims.set('4', {
+        claim_id: '4',
+        patient_id: 'P4',
+        date_of_service: '2024-01-04',
+        amount: 400,
+      });
 
       store.invoicesByClaim.set('1', [{ invoice_id: 'I1', claim_id: '1', transaction_value: 100 }]);
       store.invoicesByClaim.set('2', [{ invoice_id: 'I2', claim_id: '2', transaction_value: 150 }]);
@@ -38,7 +58,12 @@ describe('Resolvers', () => {
 
   describe('Query.reconciliation', () => {
     it('should return all reconciliation rows', () => {
-      store.claims.set('1', { claim_id: '1', patient_id: 'P1', date_of_service: '2024-01-01', amount: 100 });
+      store.claims.set('1', {
+        claim_id: '1',
+        patient_id: 'P1',
+        date_of_service: '2024-01-01',
+        amount: 100,
+      });
       store.invoicesByClaim.set('1', [{ invoice_id: 'I1', claim_id: '1', transaction_value: 100 }]);
 
       const rows = resolvers.Query.reconciliation();
@@ -83,7 +108,12 @@ describe('Resolvers', () => {
     });
 
     it('should clear existing claims', async () => {
-      store.claims.set('old', { claim_id: 'old', patient_id: 'P1', date_of_service: '2024-01-01', amount: 50 });
+      store.claims.set('old', {
+        claim_id: 'old',
+        patient_id: 'P1',
+        date_of_service: '2024-01-01',
+        amount: 50,
+      });
       const csv = 'claim_id,patient_id,date_of_service,amount\n1,P1,2024-01-01,100';
       const stream = Readable.from([csv]);
       const file = { createReadStream: () => stream, filename: 'claims.csv' };
@@ -119,7 +149,9 @@ describe('Resolvers', () => {
     });
 
     it('should clear existing invoices', async () => {
-      store.invoicesByClaim.set('old', [{ invoice_id: 'I1', claim_id: 'old', transaction_value: 50 }]);
+      store.invoicesByClaim.set('old', [
+        { invoice_id: 'I1', claim_id: 'old', transaction_value: 50 },
+      ]);
       const csv = 'invoice_id,claim_id,transaction_value\nI1,1,50';
       const stream = Readable.from([csv]);
       const file = { createReadStream: () => stream, filename: 'invoices.csv' };
@@ -132,7 +164,12 @@ describe('Resolvers', () => {
 
   describe('Mutation.clearData', () => {
     it('should clear all data', () => {
-      store.claims.set('1', { claim_id: '1', patient_id: 'P1', date_of_service: '2024-01-01', amount: 100 });
+      store.claims.set('1', {
+        claim_id: '1',
+        patient_id: 'P1',
+        date_of_service: '2024-01-01',
+        amount: 100,
+      });
       store.invoicesByClaim.set('1', [{ invoice_id: 'I1', claim_id: '1', transaction_value: 50 }]);
 
       const result = resolvers.Mutation.clearData();
@@ -143,4 +180,3 @@ describe('Resolvers', () => {
     });
   });
 });
-

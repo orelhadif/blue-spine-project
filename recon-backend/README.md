@@ -34,13 +34,14 @@ Runs on `http://localhost:8000/graphql` (or `PORT` env var).
 ## Testing
 
 Run unit tests:
+
 ```bash
 npm test
 ```
 
 Test coverage includes:
+
 - CSV parsing and transformation
 - Store management
 - Reconciliation logic
 - GraphQL resolvers
-

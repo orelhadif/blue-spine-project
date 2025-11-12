@@ -20,7 +20,10 @@
   color: #fff;
   cursor: pointer;
   border: 0;
-  transition: transform .05s ease, filter .15s ease, background .2s ease;
+  transition:
+    transform 0.05s ease,
+    filter 0.15s ease,
+    background 0.2s ease;
 }
 
 .upload-button:hover {
@@ -32,10 +35,10 @@
 }
 
 .upload-button:disabled {
-  opacity: .5;
+  opacity: 0.5;
   cursor: not-allowed;
   filter: grayscale(0.3);
-  
+
   &:hover {
     filter: grayscale(0.3);
   }
@@ -47,13 +50,13 @@
 
 .upload-button__label {
   font-weight: 600;
-  letter-spacing: .2px;
+  letter-spacing: 0.2px;
 }
 
 .upload-button__spinner {
   width: 16px;
   height: 16px;
-  border: 2px solid rgba(255, 255, 255, .5);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-top-color: #fff;
   border-radius: 50%;
   margin-left: @space-2;
@@ -61,10 +64,12 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.upload-button input[type=file] {
+.upload-button input[type='file'] {
   position: absolute;
   inset: 0;
   opacity: 0;

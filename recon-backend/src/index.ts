@@ -12,19 +12,22 @@ async function start() {
     typeDefs,
     resolvers,
     csrfPrevention: true,
-    introspection: true
+    introspection: true,
   });
   await server.start();
 
   const app = express();
 
-  app.use('/graphql', cors({
-    origin: 'http://localhost:4200',
-    credentials: true,
-    allowedHeaders: ['content-type', 'x-apollo-operation-name', 'apollo-require-preflight'],
-    methods: ['POST', 'OPTIONS']
-  }));
-  
+  app.use(
+    '/graphql',
+    cors({
+      origin: 'http://localhost:4200',
+      credentials: true,
+      allowedHeaders: ['content-type', 'x-apollo-operation-name', 'apollo-require-preflight'],
+      methods: ['POST', 'OPTIONS'],
+    })
+  );
+
   // IMPORTANT: Upload middleware must run before json body parser for /graphql
   app.use('/graphql', graphqlUploadExpress({ maxFileSize: 20 * 1024 * 1024, maxFiles: 1 }));
   app.use('/graphql', bodyParser.json({ limit: '20mb' }));

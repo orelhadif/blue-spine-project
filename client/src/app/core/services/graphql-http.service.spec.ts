@@ -8,7 +8,10 @@ describe('GraphqlHttpService', () => {
   const url = 'http://localhost:8000/graphql';
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [HttpClientTestingModule], providers: [GraphqlHttpService] });
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [GraphqlHttpService],
+    });
     service = TestBed.inject(GraphqlHttpService);
     httpMock = TestBed.inject(HttpTestingController);
   });
@@ -18,7 +21,9 @@ describe('GraphqlHttpService', () => {
   describe('execute', () => {
     it('should send POST with query and return data', () => {
       const query = 'query GetSummary { summary { totalClaims } }';
-      service.execute(query).subscribe((data) => expect(data).toEqual({ summary: { totalClaims: 10 } }));
+      service
+        .execute(query)
+        .subscribe((data) => expect(data).toEqual({ summary: { totalClaims: 10 } }));
 
       const req = httpMock.expectOne(url);
       expect(req.request.method).toBe('POST');
@@ -34,7 +39,9 @@ describe('GraphqlHttpService', () => {
     });
 
     it('should throw on errors', () => {
-      service.execute('query').subscribe({ next: () => fail(), error: (e) => expect(e.message).toBe('Error') });
+      service
+        .execute('query')
+        .subscribe({ next: () => fail(), error: (e) => expect(e.message).toBe('Error') });
       httpMock.expectOne(url).flush({ errors: [{ message: 'Error' }] });
     });
   });
@@ -42,9 +49,11 @@ describe('GraphqlHttpService', () => {
   describe('uploadFile', () => {
     it('should send multipart form data', () => {
       const file = new Blob(['test'], { type: 'text/csv' });
-      service.uploadFile('mutation Upload($file: Upload!) { upload(file: $file) { success } }', file).subscribe((data) => {
-        expect(data).toEqual({ upload: { success: true } });
-      });
+      service
+        .uploadFile('mutation Upload($file: Upload!) { upload(file: $file) { success } }', file)
+        .subscribe((data) => {
+          expect(data).toEqual({ upload: { success: true } });
+        });
 
       const req = httpMock.expectOne(url);
       expect(req.request.method).toBe('POST');
@@ -54,7 +63,9 @@ describe('GraphqlHttpService', () => {
 
     it('should throw on errors', () => {
       const file = new Blob(['test']);
-      service.uploadFile('mutation', file).subscribe({ next: () => fail(), error: (e) => expect(e.message).toBe('Error') });
+      service
+        .uploadFile('mutation', file)
+        .subscribe({ next: () => fail(), error: (e) => expect(e.message).toBe('Error') });
       httpMock.expectOne(url).flush({ errors: [{ message: 'Error' }] });
     });
   });
