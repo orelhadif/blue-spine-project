@@ -20,15 +20,17 @@ export function reconcileAll(): ReconciliationRow[] {
       continue;
     }
     const total = invs.reduce((s, i) => s + (i.transaction_value || 0), 0);
+    const roundedTotal = Number(total.toFixed(2));
+    const roundedClaimAmount = Number(claim.amount.toFixed(2));
     let status: ReconciliationRow['status'] = 'BALANCED';
-    if (claim.amount > total) status = 'OVERPAID';
-    else if (claim.amount < total) status = 'UNDERPAID';
+    if (roundedClaimAmount > roundedTotal) status = 'OVERPAID';
+    else if (roundedClaimAmount < roundedTotal) status = 'UNDERPAID';
 
     rows.push({
       claim_id: claim.claim_id,
       patient_id: claim.patient_id,
       claim_amount: claim.amount,
-      invoices_total: Number(total.toFixed(2)),
+      invoices_total: roundedTotal,
       status,
     });
   }
